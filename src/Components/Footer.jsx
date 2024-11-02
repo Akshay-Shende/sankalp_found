@@ -1,80 +1,72 @@
-import React from "react";
-
 const Footer = () => {
   return (
-    <footer className="">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          {/* Logo or Brand Name */}
-          <div className="mb-4 md:mb-0">
-            <h1 className="text-2xl font-semibold">Sankalp Foundation</h1>
+    <footer className="relative bg-blueGray-200 pt-8 pb-6">
+    <div className="container mx-auto px-4">
+      <div className="flex flex-wrap text-left lg:text-left">
+        <div className="w-full lg:w-6/12 px-4">
+          <h4 className="text-3xl fonat-semibold text-blueGray-700">Let's keep in touch!</h4>
+          <h5 className="text-lg mt-0 mb-2 text-blueGray-600">
+            Find us on any of these platforms, we respond 1-2 business days.
+          </h5>
+          <div className="mt-6 lg:mb-0 mb-6">
+            <button className="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+              <i className="fab fa-twitter"></i></button><button className="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+              <i className="fab fa-facebook-square"></i></button><button className="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+              <i className="fab fa-dribbble"></i></button><button className="bg-white text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+              <i className="fab fa-github"></i>
+            </button>
           </div>
-
-          {/* Navigation Links */}
-          <nav className="flex space-x-4 mb-4 md:mb-0">
-            <a href="/" className="hover:text-white">
-              Home
-            </a>
-            <a href="/about" className="hover:text-white">
-              About
-            </a>
-            <a href="/services" className="hover:text-white">
-              Services
-            </a>
-            <a href="/contact" className="hover:text-white">
-              Contact
-            </a>
-          </nav>
-
-          {/* Social Media Icons */}
-          <div className="flex space-x-4">
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg
-                className="w-6 h-6 hover:text-white"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                {/* Twitter Icon SVG Path */}
-                <path d="M8 19c11 0 16-9 16-16 0-.2 0-.4-.02-.6A11.4 11.4 0 0 0 26 2c-1 .5-2.1.8-3.3 1a5.9 5.9 0 0 0 2.6-3.3 11.5 11.5 0 0 1-3.7 1.4 5.6 5.6 0 0 0-4.1-1.8c-3.2 0-5.8 2.6-5.8 5.8 0 .5.06.9.16 1.4-4.8-.2-9-2.5-11.8-6C1.2 3 1.5 4.7 2.6 5.7a5.7 5.7 0 0 1-2.6-.7v.1c0 2.8 2 5.2 4.6 5.8-.5.1-1 .2-1.5.2-.4 0-.7 0-1-.1.7 2.1 2.8 3.6 5.2 3.7A11.5 11.5 0 0 1 0 18.2 16 16 0 0 0 8 19" />
-              </svg>
-            </a>
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg
-                className="w-6 h-6 hover:text-white"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                {/* Facebook Icon SVG Path */}
-                <path d="M17 2h-3c-1.7 0-3 1.3-3 3v3H8v4h3v9h4v-9h3l1-4h-4V5c0-.6.4-1 1-1h3V2z" />
-              </svg>
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg
-                className="w-6 h-6 hover:text-white"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                {/* Instagram Icon SVG Path */}
-                <path d="M12 2.2C6.5 2.2 2 6.7 2 12.3c0 5.7 4.5 10.2 10 10.2 5.5 0 10-4.5 10-10.2 0-5.6-4.5-10.1-10-10.1zm0 15.6a5.7 5.7 0 1 1 0-11.3 5.7 5.7 0 0 1 0 11.3zm7.3-11.5c-.6 0-1-.4-1-1s.4-1 1-1c.6 0 1 .4 1 1s-.4 1-1 1z" />
-                <circle cx="12" cy="12" r="3.2" />
-              </svg>
-            </a>
+        </div>
+        <div className="w-full lg:w-6/12 px-4">
+          <div className="flex flex-wrap items-top mb-6">
+            <div className="w-full lg:w-4/12 px-4 ml-auto">
+              <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2">Useful Links</span>
+              <ul className="list-unstyled">
+                <li>
+                  <a className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://www.creative-tim.com/presentation?ref=njs-profile">About Us</a>
+                </li>
+                <li>
+                  <a className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://blog.creative-tim.com?ref=njs-profile">Blog</a>
+                </li>
+                <li>
+                  <a className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://www.github.com/creativetimofficial?ref=njs-profile">Github</a>
+                </li>
+                <li>
+                  <a className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://www.creative-tim.com/bootstrap-themes/free?ref=njs-profile">Free Products</a>
+                </li>
+              </ul>
+            </div>
+            <div className="w-full lg:w-4/12 px-4">
+              <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2">Other Resources</span>
+              <ul className="list-unstyled">
+                <li>
+                  <a className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://github.com/creativetimofficial/notus-js/blob/main/LICENSE.md?ref=njs-profile">MIT License</a>
+                </li>
+                <li>
+                  <a className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://creative-tim.com/terms?ref=njs-profile">Terms &amp; Conditions</a>
+                </li>
+                <li>
+                  <a className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://creative-tim.com/privacy?ref=njs-profile">Privacy Policy</a>
+                </li>
+                <li>
+                  <a className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://creative-tim.com/contact-us?ref=njs-profile">Contact Us</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </footer>
+      <hr className="my-6 border-blueGray-300"/>
+      <div className="flex flex-wrap items-center md:justify-between justify-center">
+        <div className="w-full md:w-4/12 px-4 mx-auto text-center">
+          <div className="text-sm text-blueGray-500 font-semibold py-1">
+            Copyright © <span id="get-current-year">2021</span><a href="https://www.creative-tim.com/product/notus-js" className="text-blueGray-500 hover:text-gray-800" target="_blank"/> Notus JS by
+            <a href="https://www.creative-tim.com?ref=njs-profile" className="text-blueGray-500 hover:text-blueGray-800">Creative Tim</a>.
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
   );
 };
 

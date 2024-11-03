@@ -1,5 +1,5 @@
 "use client";
-import '../Components/globals.css'
+import '../app/globals.css'
 import React, { useState } from "react";
 import NavLink from "../Components/NavLink";
 import Select from "../Components/Select";

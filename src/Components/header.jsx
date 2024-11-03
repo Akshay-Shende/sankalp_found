@@ -4,7 +4,7 @@ import NavLink from "./NavLink";
 import Select from "./Select";
 import { useRouter } from "next/navigation";
 
-const Navbar = () => {
+const Header = () => {
   const router = useRouter();
   const [selectedValue, setSelectedValue] = useState("");
 
@@ -51,4 +51,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Header;

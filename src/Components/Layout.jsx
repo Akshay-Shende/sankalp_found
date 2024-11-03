@@ -1,10 +1,11 @@
+import "./globals.css";
 import Footer from "./Footer"
-import Navbar from "./Navbar"
+import Header from "./header"
 
 const Layout = ({ children }) => {
   return (
     <> 
-    <Navbar />
+    <Header />
     {children}
     <Footer />
     </>

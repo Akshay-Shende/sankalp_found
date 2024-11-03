@@ -8,12 +8,8 @@ const NavLink = ({ href, children }) => {
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
-    if (pathname === href) {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
-  }, [pathname, href]);
+    setIsActive(pathname === href);
+  }, [pathname]);
 
   return (
     <Link

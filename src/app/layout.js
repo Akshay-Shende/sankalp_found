@@ -1,5 +1,5 @@
 import "./globals.css";
-import Layout from "@/Components/layout";
+import Layout from "@/Components/Layout";
 
 export const metadata = {
   title: "Create Next App",

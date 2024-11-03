@@ -4,7 +4,7 @@ import NavLink from "../Components/NavLink";
 import Select from "../Components/Select";
 import { useRouter } from "next/navigation";
 
-export default Home = () => {
+export default function Home () {
   const router = useRouter();
   const [selectedValue, setSelectedValue] = useState("");
 

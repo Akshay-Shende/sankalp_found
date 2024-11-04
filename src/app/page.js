@@ -1,8 +1,8 @@
 "use client";
 import '../app/globals.css'
 import React, { useState } from "react";
-import NavLink from "../Components/NavLink";
-import Select from "../Components/Select";
+import NavLink from "./Components/NavLink";
+import Select from "./Components/Select";
 import { useRouter } from "next/navigation";
 
 export default function Home () {

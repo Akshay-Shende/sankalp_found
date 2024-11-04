@@ -8,13 +8,17 @@ console.log(name,email,message +"---->");
 
 console.log(conf.email);
 console.log(conf.emailPassword);
+console.log(process.env.EMAIL_USER);
+console.log(process.env.EMAIL_PASS);
+
+
 
   // Create Nodemailer transporter
   const transporter = nodemailer.createTransport({
     service: 'gmail', // e.g., you can use Gmail, or set up with a custom SMTP server
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
+      user: conf.email,
+      pass: conf.emailPassword,
     },
   });
 

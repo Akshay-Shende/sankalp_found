@@ -1,6 +1,6 @@
 const conf = {
-  email:  process.env.EMAIL_USER,
-  emailPassword : process.env.EMAIL_PASS,
-  emailTo : process.env.EMAIL_TO
+  email:  String(process.env.EMAIL_USER),
+  emailPassword : String(process.env.EMAIL_PASS),
+  emailTo : String(process.env.EMAIL_TO)
 }
 export default conf;   

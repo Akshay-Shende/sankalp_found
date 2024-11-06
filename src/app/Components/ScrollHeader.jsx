@@ -1,9 +1,22 @@
-'use client';
-import { useEffect, useState } from "react";
+"use client";
+import { useContext, useEffect, useState } from "react";
+import { useRouter } from "next/navigation"; // Import useRouter from Next.js
+import { MyContext } from "../context/myContext";
+import useAuth from "@/appwriteService";
 
 const ScrollHeader = () => {
   const [showScrollHeader, setShowScrollHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const router = useRouter(); // Initialize the router
+  const [isUserLogged, setIsUserLogged] = useState(false);
+  const { loggedIn,setLoggedIn } = useContext(MyContext);
+  const { loggedInUser, logout } = useAuth();
+
+  useEffect(() => {
+    console.log(loggedIn);
+
+    setIsUserLogged(loggedIn);
+  }, [loggedIn]);
 
   const handleScroll = () => {
     const currentScrollY = window.scrollY;
@@ -15,6 +28,19 @@ const ScrollHeader = () => {
     }
 
     setLastScrollY(currentScrollY);
+  };
+
+  const handleLoginClick = () => {
+    router.push("/login"); // Redirect to login page
+  };
+
+  const handleLogoutClick = () => {
+    console.log("Logout button clicked");
+    logout();
+
+    setLoggedIn(false)
+
+    router.push("/home"); // Redirect to home page
   };
 
   useEffect(() => {
@@ -29,9 +55,21 @@ const ScrollHeader = () => {
     showScrollHeader && (
       <div className="scroll-header w-full bg-gray-100 py-2 shadow-md">
         <div className="flex justify-end space-x-4 px-4">
-          <button className="login-button bg-blue-500 text-white px-4 py-2 rounded">
-            Login
-          </button>
+         {isUserLogged ? (
+            <button
+              className="login-button bg-red-500 text-white px-4 py-2 rounded"
+              onClick={handleLogoutClick}
+            >
+              Logout
+            </button>
+          ) : (
+            <button
+              className="login-button bg-blue-500 text-white px-4 py-2 rounded"
+              onClick={handleLoginClick}
+            >
+              Login
+            </button>
+          )}
         </div>
       </div>
     )

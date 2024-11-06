@@ -1,15 +1,26 @@
-'use client';
-import React, { useState } from 'react';
+"use client";
+import useAuth from "@/appwriteService";
+import React, { useContext, useState } from "react";
+import { MyContext } from "../context/myContext";
 
 const Page = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const { login } = useAuth();
+const {loggedIn ,setLoggedIn} =  useContext(MyContext)
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     // Add login logic here
-    console.log('Username:', username);
-    console.log('Password:', password);
+
+    const loggedInUser = await login(username, password);
+console.log(loggedInUser);
+
+    if (loggedInUser != false) {
+      setLoggedIn(true)
+    }
+    console.log('loggedIn user in page',loggedIn);
+    
   };
 
   return (
@@ -18,7 +29,10 @@ const Page = () => {
         <h2 className="text-2xl font-semibold text-center mb-6">Login</h2>
         <form onSubmit={handleLogin}>
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="username"
+            >
               Username
             </label>
             <input
@@ -31,7 +45,10 @@ const Page = () => {
             />
           </div>
           <div className="mb-6">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="password"
+            >
               Password
             </label>
             <input
@@ -49,6 +66,7 @@ const Page = () => {
           >
             Login
           </button>
+          
         </form>
       </div>
     </div>

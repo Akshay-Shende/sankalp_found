@@ -29,8 +29,8 @@ const Header = () => {
         <li>
           <NavLink href="/donation">Donation</NavLink>
         </li>
-        <li>
-          <Select
+        <li className ='-mt-1'>
+          <Select 
             options={[
               { value: "/environment", label: "Environment" },
               { value: "/education", label: "Education" },

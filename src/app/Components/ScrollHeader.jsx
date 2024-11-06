@@ -13,8 +13,6 @@ const ScrollHeader = () => {
   const { loggedInUser, logout } = useAuth();
 
   useEffect(() => {
-    console.log(loggedIn);
-
     setIsUserLogged(loggedIn);
   }, [loggedIn]);
 
@@ -35,7 +33,6 @@ const ScrollHeader = () => {
   };
 
   const handleLogoutClick = () => {
-    console.log("Logout button clicked");
     logout();
 
     setLoggedIn(false)

@@ -2,25 +2,29 @@
 import useAuth from "@/appwriteService";
 import React, { useContext, useState } from "react";
 import { MyContext } from "../context/myContext";
+import { useRouter } from "next/navigation";
+
 
 const Page = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { login } = useAuth();
-const {loggedIn ,setLoggedIn} =  useContext(MyContext)
+  const { setLoggedIn } = useContext(MyContext);
+const router = useRouter();
+
 
   const handleLogin = async (e) => {
     e.preventDefault();
     // Add login logic here
 
     const loggedInUser = await login(username, password);
-console.log(loggedInUser);
+    console.log(loggedInUser);
 
     if (loggedInUser != false) {
-      setLoggedIn(true)
+      setLoggedIn(true);
+router.push('/add-blog')
+
     }
-    console.log('loggedIn user in page',loggedIn);
-    
   };
 
   return (
@@ -66,7 +70,6 @@ console.log(loggedInUser);
           >
             Login
           </button>
-          
         </form>
       </div>
     </div>

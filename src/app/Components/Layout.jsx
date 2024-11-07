@@ -1,6 +1,6 @@
 import Footer from "../Components/footer";
 import Header from "../Components/header";
-import ScrollHeader from "./scrollHeader";
+import ScrollHeader from "@/app/Components/ScrollHeader";
 import { MyProvider } from "../context/myContext";
 const Layout = ({ children }) => {
   return (

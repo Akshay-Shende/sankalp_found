@@ -9,16 +9,24 @@ const Editor = dynamic(() => import('@tinymce/tinymce-react').then((mod) => mod.
 function Page() {
   const editorRef = useRef(null);
   const { addToBlog } = useBlog();
-  const [title, setTitle] = useState('')
+  const [title, setTitle] = useState('');
+  const [image, setImage] = useState(null);
+
+  const handleImageChange = (event) => {
+    setImage(event.target.files[0]); // Update the image state with the selected file
+  };
 
   const handleSubmit = async () => {
     if (editorRef.current) {
       const content = editorRef.current.getContent();
       console.log('Blog content:', content);
 
+      // Use default image if no image is selected
+      const imageUrl = image ? URL.createObjectURL(image) : 'https://example.com/default-image.jpg';
+
       // Send to API
       try {
-        const result = await addToBlog({title,blogData : content});
+        const result = await addToBlog({ title, blogData: content, imageUrl });
         console.log('add blog result', result);
         alert('Blog saved successfully!');
       } catch (error) {
@@ -41,6 +49,17 @@ function Page() {
           onChange={(e) => setTitle(e.target.value)}
         />
 
+        {/* Image Upload Input */}
+        <div className="mb-6">
+          <label className="block text-sm font-semibold text-gray-700 mb-2">Upload Image (Optional)</label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
         {/* Editor Component */}
         <Editor
           apiKey="gi7ws7sek662rbr7tqn1jj1loe62xux4rozrqhl6j1hd7r7s"
@@ -50,12 +69,10 @@ function Page() {
             height: 500,
             menubar: 'file edit view insert format tools table help',
             plugins: [],
-            toolbar: `
-              undo redo | formatselect | fontselect fontsizeselect | bold italic underline strikethrough | 
-              forecolor backcolor | alignleft aligncenter alignright alignjustify | 
-              bullist numlist outdent indent | link image media | 
-              emoticons hr pagebreak | removeformat | code fullscreen preview
-            `,
+            toolbar: `undo redo | formatselect | fontselect fontsizeselect | bold italic underline strikethrough | 
+                      forecolor backcolor | alignleft aligncenter alignright alignjustify | 
+                      bullist numlist outdent indent | link image media | 
+                      emoticons hr pagebreak | removeformat | code fullscreen preview`,
             font_formats: "Arial=arial,helvetica,sans-serif; Courier New=courier new,courier,monospace; Times New Roman=times new roman,times;",
             fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
             toolbar_sticky: true,

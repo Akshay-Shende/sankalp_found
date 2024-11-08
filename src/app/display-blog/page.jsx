@@ -20,6 +20,8 @@ const Page = () => {
 
   const handleDelete = async (blogId) => {
     try {
+      console.log('blog Id',blogId);
+      
       await deleteBlog(blogId);
       setBlog(blog.filter((e) => e.$id !== blogId));
       alert("Blog deleted successfully!");
@@ -43,8 +45,7 @@ const Page = () => {
                 className="bg-white shadow-lg rounded-lg overflow-hidden group hover:shadow-xl transition-shadow"
               >
                 <div className="relative">
-                  {console.log("blog IMAGE", e.blogImage)}
-                  <img
+                <img
                     src={
                       getFilePreview(e.blogImage) 
                      

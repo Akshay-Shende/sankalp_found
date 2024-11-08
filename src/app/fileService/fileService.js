@@ -49,10 +49,7 @@ const useFiles = () => {
 
   const getFilePreview = (fileId) => {
     try {
-      console.log('bucket Id is:', bucketId);
-      console.log('file Id is:', fileId);
-      const fileResult = storage.getFilePreview(bucketId, fileId);
-      console.log('fileResult', fileResult);
+     const fileResult = storage.getFilePreview(bucketId, fileId);
       return fileResult;
     } catch (error) {
       console.log("Appwrite service :: getFilePreview :: error", error);

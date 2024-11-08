@@ -21,6 +21,8 @@ const useBlog = () => {
 
   const getBlog = async (blogId) => {
     try {
+      console.log( blogId.blogId);
+
       const blogResult = await databases.getDocument(
         conf.appwriteDatabaseId,
         conf.appwriteBlogId,
@@ -29,6 +31,33 @@ const useBlog = () => {
       return blogResult;
     } catch (error) {
       console.log("Appwrite service :: getBlog :: error", error);
+      return false;
+    }
+  };
+  const deleteBlog = async (blogId) => {
+    try {
+      const blogResult = await databases.deleteDocument(
+        conf.appwriteDatabaseId,
+        conf.appwriteBlogId,
+        blogId
+      );
+      return blogResult;
+    } catch (error) {
+      console.log("Appwrite service :: deleteBlog :: error", error);
+      return false;
+    }
+  };
+  const updateBlog = async (blogId, blog) => {
+    try {
+      const blogResult = await databases.updateDocument(
+        conf.appwriteDatabaseId,
+        conf.appwriteBlogId,
+        blogId,
+        blog
+      );
+      return blogResult;
+    } catch (error) {
+      console.log("Appwrite service :: updateBlog :: error", error);
       return false;
     }
   };
@@ -46,6 +75,6 @@ const useBlog = () => {
     }
   };
 
-  return { addToBlog,getAllBlogs, getBlog };
+  return { addToBlog,getAllBlogs, getBlog, deleteBlog, updateBlog };
 };
 export default useBlog;

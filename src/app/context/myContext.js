@@ -5,11 +5,15 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 export const MyContext = createContext();
 
 export const MyProvider = ({ children }) => {
-  // Initialize state from localStorage or default value (false)
-  const [loggedIn, setLoggedIn] = useState(() => {
+  const [loggedIn, setLoggedIn] = useState(false); // Set a default initial state
+
+  // Use effect to set the initial state from localStorage after the component mounts
+  useEffect(() => {
     const storedLoggedIn = localStorage.getItem('loggedIn');
-    return storedLoggedIn === 'true'; // Convert stored value to boolean
-  });
+    if (storedLoggedIn) {
+      setLoggedIn(storedLoggedIn === 'true'); // Convert stored value to boolean
+    }
+  }, []);
 
   // Save state to localStorage whenever it changes
   useEffect(() => {
@@ -22,3 +26,6 @@ export const MyProvider = ({ children }) => {
     </MyContext.Provider>
   );
 };
+
+// Custom hook to use the context
+export const useMyContext = () => useContext(MyContext);

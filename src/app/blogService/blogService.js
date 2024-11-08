@@ -4,7 +4,7 @@ import { databases, ID } from "@/app/appWrite";
 const useBlog = () => {
   const addToBlog = async (blog) => {
     try {
-      console.log(conf.appwriteBlogId);
+      console.log("blog", blog);
 
       let cartResult = await databases.createDocument(
         conf.appwriteDatabaseId,

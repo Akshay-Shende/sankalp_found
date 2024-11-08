@@ -3,10 +3,12 @@ import DOMPurify from "dompurify";
 import React, { useEffect, useState } from "react";
 import useBlog from "@/app/blogService/blogService";
 import { PencilIcon, TrashIcon } from "@heroicons/react/outline"; // Tailwind Heroicons for icons
+import useFiles from "../fileService/fileService";
 
 const Page = () => {
   const [blog, setBlog] = useState([]);
   const { getAllBlogs, deleteBlog } = useBlog();
+  const { getFilePreview } = useFiles();
 
   useEffect(() => {
     (async () => {
@@ -41,9 +43,12 @@ const Page = () => {
                 className="bg-white shadow-lg rounded-lg overflow-hidden group hover:shadow-xl transition-shadow"
               >
                 <div className="relative">
-                  {/* Blog Image (if any) */}
+                  {console.log("blog IMAGE", e.blogImage)}
                   <img
-                    src={e.image || "/default-image.jpg"} // Replace with actual image logic if available
+                    src={
+                      getFilePreview(e.blogImage) 
+                     
+                    }
                     alt={e.title}
                     className="w-full h-48 object-cover group-hover:opacity-80 transition-opacity"
                   />
@@ -64,7 +69,9 @@ const Page = () => {
                   </div>
                 </div>
                 <div className="p-6">
-                  <h2 className="text-xl font-semibold text-gray-900 mb-4">{e.title}</h2>
+                  <h2 className="text-xl font-semibold text-gray-900 mb-4">
+                    {e.title}
+                  </h2>
                   <div
                     className="text-gray-700 mb-4 line-clamp-3"
                     dangerouslySetInnerHTML={{ __html: sanitizedHtml }}

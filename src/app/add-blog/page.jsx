@@ -2,6 +2,7 @@
 import React, { useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import useBlog from '../blogService/blogService';
+import useFiles from '../fileService/fileService';
 
 // Dynamically import the Editor component with no SSR
 const Editor = dynamic(() => import('@tinymce/tinymce-react').then((mod) => mod.Editor), { ssr: false });
@@ -11,6 +12,7 @@ function Page() {
   const { addToBlog } = useBlog();
   const [title, setTitle] = useState('');
   const [image, setImage] = useState(null);
+  const { createFile } = useFiles();
 
   const handleImageChange = (event) => {
     setImage(event.target.files[0]); // Update the image state with the selected file
@@ -19,14 +21,17 @@ function Page() {
   const handleSubmit = async () => {
     if (editorRef.current) {
       const content = editorRef.current.getContent();
-      console.log('Blog content:', content);
 
       // Use default image if no image is selected
       const imageUrl = image ? URL.createObjectURL(image) : 'https://example.com/default-image.jpg';
 
+      const imageResponse = await createFile(image)
+
       // Send to API
       try {
-        const result = await addToBlog({ title, blogData: content, imageUrl });
+        console.log('imageResponse', imageResponse);
+        
+        const result = await addToBlog({ title, blogData: content, blogImage: imageResponse.$id });
         console.log('add blog result', result);
         alert('Blog saved successfully!');
       } catch (error) {

@@ -7,7 +7,6 @@ const useFiles = () => {
 
   const createFile = async (file) => {
     try {
-   
       const fileResult = await storage.createFile(bucketId, ID.unique(), file);
       return fileResult;
     } catch (error) {
@@ -48,20 +47,19 @@ const useFiles = () => {
     }
   };
 
-const getFilePreview = async (fileId) => {
+  const getFilePreview = (fileId) => {
     try {
-      console.log('bucket Id is:',bucketId)
-      console.log('file Id is',fileId)
-      const fileResult = await storage.getFilePreview(bucketId, fileId)
-      console.log('fileResult',fileResult)
-      return fileResult
+      console.log('bucket Id is:', bucketId);
+      console.log('file Id is:', fileId);
+      const fileResult = storage.getFilePreview(bucketId, fileId);
+      console.log('fileResult', fileResult);
+      return fileResult;
     } catch (error) {
-      console.log("Appwrite service :: getFilePreview :: error", error)
-      return false
+      console.log("Appwrite service :: getFilePreview :: error", error);
+      return false;
     }
-  }
+  };
   
-
   const getFileView = (fileId) => {
    try {
       const fileResult = storage.getFileView(bucketId, fileId).href;

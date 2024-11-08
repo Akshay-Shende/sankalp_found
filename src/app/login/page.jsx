@@ -3,12 +3,12 @@ import useAuth from "@/appwriteService";
 import React, { useContext, useState } from "react";
 import { MyContext } from "../context/myContext";
 import { useRouter } from "next/navigation";
-
+import { Toaster, toast } from 'sonner'
 
 const Page = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useAuth();
+  const { login, getActiveSession } = useAuth();
   const { setLoggedIn } = useContext(MyContext);
 const router = useRouter();
 
@@ -17,8 +17,19 @@ const router = useRouter();
     e.preventDefault();
     // Add login logic here
 
+    const activeSession = await getActiveSession(); // Function to check for an active session
+  
+    if (activeSession) {
+      toast.error("You are already logged in.");
+      return;
+    }
+
     const loggedInUser = await login(username, password);
     console.log(loggedInUser);
+
+    if (loggedInUser == false) {
+      toast.error('Invalid Credentials')
+    }
 
     if (loggedInUser != false) {
       setLoggedIn(true);

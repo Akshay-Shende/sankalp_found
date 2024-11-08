@@ -5,12 +5,15 @@ import useBlog from "@/app/blogService/blogService";
 import { PencilIcon, TrashIcon } from "@heroicons/react/outline"; // Tailwind Heroicons for icons
 import useFiles from "../fileService/fileService";
 import { useRouter } from "next/navigation";
+import { MyContext } from "../context/myContext";
+import { useContext } from "react";
+
 const Page = () => {
   const [blog, setBlog] = useState([]);
   const { getAllBlogs, deleteBlog } = useBlog();
   const { getFilePreview } = useFiles();
   const router = useRouter();
-  
+  const { loggedIn } = useContext(MyContext);
 
   useEffect(() => {
     (async () => {
@@ -56,7 +59,7 @@ const Page = () => {
                     className="w-full h-48 object-cover group-hover:opacity-80 transition-opacity"
                   />
                   {/* Hover Actions */}
-                  <div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                  {loggedIn &&(<div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
                     <button
                       className="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600"
                       onClick={() => router.push(`/update-blog/${e.$id}`)}
@@ -69,7 +72,8 @@ const Page = () => {
                     >
                       <TrashIcon className="h-5 w-5" />
                     </button>
-                  </div>
+                  </div>)}
+                  
                 </div>
                 <div className="p-6">
                   <h2 className="text-xl font-semibold text-gray-900 mb-4">

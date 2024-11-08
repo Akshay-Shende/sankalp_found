@@ -60,6 +60,16 @@ const useAuth = () => {
     }
   };
 
+  const getActiveSession = async () => {
+    try {
+      const session = await account.getSession("current");
+      return session;
+    } catch (error) {
+    //  console.error("Failed to get active session:", error);
+      return null;
+    }
+  };
+
   
   return {
     loggedInUser,
@@ -68,7 +78,8 @@ const useAuth = () => {
     name,
     login,
     registerUser,
-    logout
+    logout,
+    getActiveSession
   };
 };
 

@@ -4,11 +4,13 @@ import React, { useEffect, useState } from "react";
 import useBlog from "@/app/blogService/blogService";
 import { PencilIcon, TrashIcon } from "@heroicons/react/outline"; // Tailwind Heroicons for icons
 import useFiles from "../fileService/fileService";
-
+import { useRouter } from "next/navigation";
 const Page = () => {
   const [blog, setBlog] = useState([]);
   const { getAllBlogs, deleteBlog } = useBlog();
   const { getFilePreview } = useFiles();
+  const router = useRouter();
+  
 
   useEffect(() => {
     (async () => {
@@ -57,7 +59,7 @@ const Page = () => {
                   <div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
                     <button
                       className="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600"
-                      onClick={() => alert("Edit functionality coming soon!")}
+                      onClick={() => router.push(`/update-blog/${e.$id}`)}
                     >
                       <PencilIcon className="h-5 w-5" />
                     </button>

@@ -44,6 +44,9 @@ const Header = () => {
           <NavLink href="/news">News</NavLink>
         </li>
         <li>
+          <NavLink href="/display-blog">Blogs</NavLink>
+        </li>
+        <li>
           <NavLink href="/contact-us">Contact Us</NavLink>
         </li>
       </ul>

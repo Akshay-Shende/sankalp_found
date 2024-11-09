@@ -7,10 +7,11 @@ import useAuth from "@/appwriteService";
 const ScrollHeader = () => {
   const [showScrollHeader, setShowScrollHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const router = useRouter(); // Initialize the router
+  const router = useRouter(); 
   const [isUserLogged, setIsUserLogged] = useState(false);
   const { loggedIn,setLoggedIn } = useContext(MyContext);
   const { loggedInUser, logout } = useAuth();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setIsUserLogged(loggedIn);
@@ -33,7 +34,9 @@ const ScrollHeader = () => {
   };
 
   const handleLogoutClick = () => {
+    setLoading(true);
     logout();
+    setLoading(false);
 
     setLoggedIn(false)
 
@@ -48,6 +51,9 @@ const ScrollHeader = () => {
     };
   }, [lastScrollY]);
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
     showScrollHeader && (
       <div className="scroll-header w-full bg-gray-100 py-2 shadow-md">

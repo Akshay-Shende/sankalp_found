@@ -3,41 +3,43 @@ import useAuth from "@/appwriteService";
 import React, { useContext, useState } from "react";
 import { MyContext } from "../context/myContext";
 import { useRouter } from "next/navigation";
-import { Toaster, toast } from 'sonner'
+import { Toaster, toast } from "sonner";
 
 const Page = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const { login, getActiveSession } = useAuth();
   const { setLoggedIn } = useContext(MyContext);
-const router = useRouter();
-
+  const router = useRouter();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    // Add login logic here
 
-    const activeSession = await getActiveSession(); // Function to check for an active session
-  
+    const activeSession = await getActiveSession();
+
     if (activeSession) {
       toast.error("You are already logged in.");
       return;
     }
 
+    setLoading(true);
     const loggedInUser = await login(username, password);
-    console.log(loggedInUser);
+    setLoading(false);
 
     if (loggedInUser == false) {
-      toast.error('Invalid Credentials')
+      toast.error("Invalid Credentials");
     }
 
     if (loggedInUser != false) {
       setLoggedIn(true);
-router.push('/add-blog')
-
+      router.push("/add-blog");
     }
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <div className="w-full max-w-md bg-white shadow-md rounded-lg p-8">

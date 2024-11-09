@@ -9,7 +9,7 @@ import { MyContext } from "../context/myContext";
 import { useContext } from "react";
 
 const Page = () => {
-  const [blog, setBlog] = useState([]);
+  const [blog, setBlog] = useState(null);
   const { getAllBlogs, deleteBlog } = useBlog();
   const { getFilePreview } = useFiles();
   const router = useRouter();
@@ -19,7 +19,6 @@ const Page = () => {
     (async () => {
       const result = await getAllBlogs();
       setBlog(result.documents);
-      console.log("blog result", result);
     })();
   }, []);
 
@@ -36,6 +35,7 @@ const Page = () => {
     }
   };
 
+  if (!blog) return <p>Loading...</p>;
   return (
     <div className="max-w-7xl mx-auto px-4 py-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -86,7 +86,7 @@ const Page = () => {
                   <div className="flex justify-between items-center text-sm text-gray-500">
                     <span>{new Date(e.$updatedAt).toLocaleDateString()}</span>
                     <a
-                      href={`/blog/${e.$id}`}
+                      href={`/display-blog/${e.$id}`}
                       className="text-blue-500 hover:text-blue-600 transition"
                     >
                       Read more →

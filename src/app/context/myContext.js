@@ -4,8 +4,10 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 // Create a context with a default value
 export const MyContext = createContext();
 
+const initialState = JSON.parse(localStorage.getItem('loggedIn')) || false;
+
 export const MyProvider = ({ children }) => {
-  const [loggedIn, setLoggedIn] = useState(false); // Set a default initial state
+  const [loggedIn, setLoggedIn] = useState(initialState); // Set a default initial state
 
   // Use effect to set the initial state from localStorage after the component mounts
   useEffect(() => {

@@ -1,8 +1,10 @@
 'use client';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import useBlog from '../blogService/blogService';
 import useFiles from '../fileService/fileService';
+import useAuth from '@/appwriteService';
+import Unauthorized from '../Components/unAuthorized';
 
 // Dynamically import the Editor component with no SSR
 const Editor = dynamic(() => import('@tinymce/tinymce-react').then((mod) => mod.Editor), { ssr: false });
@@ -11,8 +13,10 @@ function Page() {
   const editorRef = useRef(null);
   const { addToBlog } = useBlog();
   const [title, setTitle] = useState('');
+  const [session, setSession] = useState(null);
   const [image, setImage] = useState(null);
   const { createFile } = useFiles();
+  const  { getActiveSession } = useAuth();
 
   const handleImageChange = (event) => {
     setImage(event.target.files[0]); // Update the image state with the selected file
@@ -40,6 +44,17 @@ function Page() {
       }
     }
   };
+
+  useEffect(() => {
+    (async () => {
+      const session = await getActiveSession();
+     setSession(session);
+    })();
+  }, []);
+
+  if (!session) {
+    return <Unauthorized/>
+  }
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 py-8">
